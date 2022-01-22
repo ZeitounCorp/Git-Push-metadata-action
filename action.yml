@@ -1,0 +1,25 @@
+name: "Git-Push-metadata-action"
+author: "@ZeitounCorp"
+description: "Github action that should execute when a new push happens on a repository, should alert the maintainer by mail with the number of files modified, number of modifications, full date (DD/MM/YYYY @ time) and the commit message"
+inputs:
+  owner:
+    description: "The owner of the repository"
+    required: true
+  push_user:
+    description: "The user that pushed the commit"
+    required: true
+  repo:
+    description: "The name of the repository"
+    required: true
+  commit_number:
+    description: "The number of commits pushed"
+    required: true
+  commit_sha:
+    description: "The commit sha"
+    required: true
+  token:
+    description: "The token to use to access the GitHub API"
+    required: true
+runs:
+  using: "node16"
+  main: "index.js"
