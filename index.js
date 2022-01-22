@@ -67,6 +67,7 @@ const main = async () => {
       repo,
       commit_sha,
       body: `
+        - Commit date: ${new Date().toISOString()}
         New commit #${commit_number} it contained: \n
         - ${diffData.changes} changes \n
         - ${diffData.additions} additions \n
