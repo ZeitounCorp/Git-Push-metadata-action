@@ -13,7 +13,7 @@ jobs:
         with:
           owner: ${{ github.repository_owner }}
           repo: ${{ github.event.repository.name }}
-          push_user: ${{ github.event.push.user.login }}
+          push_user: ${{ github.event.sender.login }}
           commit_sha: ${{ github.event.push.commits[0].sha }}
           commit_number: ${{ github.event.commits.length }}
           push_id: ${{ github.event.push.id }}
