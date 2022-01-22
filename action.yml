@@ -7,19 +7,19 @@ inputs:
     required: true
   push_user:
     description: "The user that pushed the commit"
-    required: true
+    required: false
   repo:
     description: "The name of the repository"
     required: true
   push_id:
     description: "The id of the push"
-    required: true
+    required: false
   commit_number:
     description: "The number of commits pushed"
-    required: true
+    required: false
   commit_sha:
     description: "The commit sha"
-    required: true
+    required: false
   token:
     description: "The token to use to access the GitHub API"
     required: true
