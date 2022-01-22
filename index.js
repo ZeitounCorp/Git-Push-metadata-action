@@ -12,6 +12,7 @@ const main = async () => {
     const token = core.getInput('token', { required: true });
     const push_user = core.getInput('push_user', { required: true });
     const commit_number = core.getInput('commit_number', { required: true });
+    const push_id = core.getInput('push_id', { required: true });
     const commit_sha = core.getInput('commit_sha', { required: true });
 
     /**
@@ -67,8 +68,9 @@ const main = async () => {
       repo,
       commit_sha,
       body: `
-        - Commit date: ${new Date().toISOString()}
-        New commit #${commit_number} it contained: \n
+        - Push date: ${new Date().toISOString()}
+        - Push made by: ${push_user}
+        New commit #${push_id} it contained: \n
         - ${diffData.changes} changes \n
         - ${diffData.additions} additions \n
         - ${diffData.deletions} deletions \n

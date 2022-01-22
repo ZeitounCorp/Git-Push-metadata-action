@@ -11,6 +11,9 @@ inputs:
   repo:
     description: "The name of the repository"
     required: true
+  push_id:
+    description: "The id of the push"
+    required: true
   commit_number:
     description: "The number of commits pushed"
     required: true

@@ -1,0 +1,20 @@
+name: Git commit metadata annotation
+
+on: push
+
+jobs:
+
+  annotate-pr:
+    runs-on: ubuntu-latest
+    name: Annotates commits with metadata
+    steps:
+      - name: Annotate Commit
+        uses: ZeitounCorp/Git-Push-metadata-action@main
+        with:
+          owner: ${{ github.repository_owner }}
+          repo: ${{ github.event.repository.name }}
+          push_user: ${{ github.event.push.user.login }}
+          commit_sha: ${{ github.event.push.commits[0].sha }}
+          commit_number: ${{ github.event.commits.length }}
+          push_id: ${{ github.event.push.id }}
+          token: ${{ secrets.GITHUB_TOKEN }}
