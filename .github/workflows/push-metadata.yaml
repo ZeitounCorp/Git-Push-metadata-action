@@ -15,8 +15,8 @@ jobs:
           owner: ${{ github.repository_owner }}
           repo: ${{ github.event.repository.name }}
           push_user: ${{ github.event.sender.login }}
-          commit_sha: ${{ github.event.push.payload.head }}
-          commit_number: ${{ github.event.push.payload.size }}
-          push_id: ${{ github.event.push.payload.push_id }}
+          commit_sha: ${{ github.event.after }}
+          commit_message: ${{ github.event.commits[0].message }}
+          commit_number: ${{ github.event.push.commits.length }}
+          push_id: ${{ github.event.commits[0].id }}
           token: ${{ secrets.GITHUB_TOKEN }}
-          data: ${{ github.event }}

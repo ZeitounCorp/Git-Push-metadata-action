@@ -8484,7 +8484,7 @@ const main = async () => {
     // const commit_number = core.getInput('commit_number', { required: true });
     const push_id = core.getInput('push_id');
     const commit_sha = core.getInput('commit_sha');
-    const data_ = core.getInput('data');
+    const commit_message = core.getInput('commit_message');
 
     console.log(`Owner: ${owner}`);
     console.log(`Repo: ${repo}`);
@@ -8548,7 +8548,8 @@ const main = async () => {
       body: `
         - Push date: ${new Date().toISOString()}
         - Push made by: ${push_user}
-        New commit #${push_id} it contained: \n
+        - Commit message: ${commit_message}
+        New commit with id: #${push_id}, it contained: \n
         - ${diffData.changes} changes \n
         - ${diffData.additions} additions \n
         - ${diffData.deletions} deletions \n
