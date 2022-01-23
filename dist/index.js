@@ -8477,13 +8477,13 @@ const main = async () => {
      * We need to fetch all the inputs that were provided to our action
      * and store them in variables for us to use.
      **/
-    const owner = core.getInput('owner', { required: true });
-    const repo = core.getInput('repo', { required: true });
-    const token = core.getInput('token', { required: true });
-    const push_user = core.getInput('push_user', { required: true });
+    const owner = core.getInput('owner');
+    const repo = core.getInput('repo');
+    const token = core.getInput('token');
+    const push_user = core.getInput('push_user');
     // const commit_number = core.getInput('commit_number', { required: true });
-    const push_id = core.getInput('push_id', { required: true });
-    const commit_sha = core.getInput('commit_sha', { required: true });
+    const push_id = core.getInput('push_id');
+    const commit_sha = core.getInput('commit_sha');
 
     console.log(`Owner: ${owner}`);
     console.log(`Repo: ${repo}`);
