@@ -8503,52 +8503,52 @@ const main = async () => {
      * results.
      * Reference: https://octokit.github.io/rest.js/v18#pulls-list-files
      */
-    const { data: changedFiles } = await octokit.rest.git.getCommit({
+    const response = await octokit.rest.git.getCommit({
       owner,
       repo,
       commit_sha,
     });
 
-    console.log(changedFiles);
+    console.log(response);
 
     /**
      * Contains the sum of all the additions, deletions, and changes
      * in all the files in the Pull Request.
      **/
-    let diffData = {
-      additions: 0,
-      deletions: 0,
-      changes: 0,
-    };
+    // let diffData = {
+    //   additions: 0,
+    //   deletions: 0,
+    //   changes: 0,
+    // };
 
-    // Reference for how to use Array.reduce():
-    // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce
-    diffData = changedFiles.reduce((acc, file) => {
-      acc.additions += file.additions;
-      acc.deletions += file.deletions;
-      acc.changes += file.changes;
-      return acc;
-    }, diffData);
+    // // Reference for how to use Array.reduce():
+    // // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce
+    // diffData = changedFiles.reduce((acc, file) => {
+    //   acc.additions += file.additions;
+    //   acc.deletions += file.deletions;
+    //   acc.changes += file.changes;
+    //   return acc;
+    // }, diffData);
 
-    /**
-     * Create a comment on the PR with the information we compiled from the
-     * list of changed files.
-     */
-    await octokit.rest.repos.createCommitComment({
-      owner,
-      repo,
-      commit_sha,
-      body: `
-        - Push date: ${new Date().toISOString()}
-        - Push made by: ${push_user}
-        - Commit message: ${commit_message}
-        New commit with id: #${push_id}, it contained: \n
-        - ${diffData.changes} changes \n
-        - ${diffData.additions} additions \n
-        - ${diffData.deletions} deletions \n
-        - ${changedFiles.length} files edited \n
-      `,
-    });
+    // /**
+    //  * Create a comment on the PR with the information we compiled from the
+    //  * list of changed files.
+    //  */
+    // await octokit.rest.repos.createCommitComment({
+    //   owner,
+    //   repo,
+    //   commit_sha,
+    //   body: `
+    //     - Push date: ${new Date().toISOString()}
+    //     - Push made by: ${push_user}
+    //     - Commit message: ${commit_message}
+    //     New commit with id: #${push_id}, it contained: \n
+    //     - ${diffData.changes} changes \n
+    //     - ${diffData.additions} additions \n
+    //     - ${diffData.deletions} deletions \n
+    //     - ${changedFiles.length} files edited \n
+    //   `,
+    // });
   } catch (error) {
     core.setFailed(error.message);
   }
