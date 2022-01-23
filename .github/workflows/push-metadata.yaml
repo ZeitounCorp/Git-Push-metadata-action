@@ -8,6 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Annotates commits with metadata
     steps:
+      - uses: hmarr/debug-action@v2
       - name: Annotate Commit
         uses: ZeitounCorp/Git-Push-metadata-action@main
         with:
@@ -18,4 +19,4 @@ jobs:
           commit_number: ${{ github.event.push.payload.size }}
           push_id: ${{ github.event.push.payload.push_id }}
           token: ${{ secrets.GITHUB_TOKEN }}
-          data: ${{ github.event.push }}
+          data: ${{ github.event }}
