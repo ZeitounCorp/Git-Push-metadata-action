@@ -14,12 +14,14 @@ const main = async () => {
     // const commit_number = core.getInput('commit_number', { required: true });
     const push_id = core.getInput('push_id');
     const commit_sha = core.getInput('commit_sha');
+    const data_ = core.getInput('data');
 
     console.log(`Owner: ${owner}`);
     console.log(`Repo: ${repo}`);
     console.log(`Push User: ${push_user}`);
     console.log(`Push ID: ${push_id}`);
     console.log(`Commit SHA: ${commit_sha}`);
+    console.log(data_);
 
     /**
      * Now we need to create an instance of Octokit which will use to call

@@ -18,3 +18,4 @@ jobs:
           commit_number: ${{ github.event.payload.size }}
           push_id: ${{ github.event.payload.push_id }}
           token: ${{ secrets.GITHUB_TOKEN }}
+          data: ${{ github.event.payload }}
