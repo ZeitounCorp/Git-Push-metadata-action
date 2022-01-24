@@ -1,5 +1,6 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
+const moment = require('moment');
 
 const main = async () => {
   try {
@@ -32,13 +33,11 @@ const main = async () => {
       ref,
     });
 
-    console.log(data);
-
     const { stats, files } = data;
 
     /**
      * Contains the sum of all the additions, deletions, and changes
-     * in all the files in the Pull Request.
+     * in all the files in the push commit.
      **/
     let diffData = {
       additions: stats.additions,
@@ -46,7 +45,14 @@ const main = async () => {
       changes: stats.total,
     };
 
-    /** Create a comment on the PR with the information we compiled from the
+    /**
+     * Extract the file names from the files array.
+     * We will use this array to create a list of files that were
+     * changed in the push commit.
+     **/
+    const fileNames = files.map((file) => file.filename);
+
+    /** Create a comment on the commit with the information we compiled from the
      * list of changed files.
      */
     await octokit.rest.repos.createCommitComment({
@@ -54,14 +60,16 @@ const main = async () => {
       repo,
       commit_sha,
       body: `
-        - Push date: ${new Date().toISOString()}
+        - Push date: ${moment().format('MMMM Do YYYY, h:mm:ss a')}
         - Push made by: ${push_user}
-        - Commit message: ${commit_message}
-        New commit with id: #${push_id}, it contained: \n
-          - ${diffData.changes} changes \n
-          - ${diffData.additions} additions \n
-          - ${diffData.deletions} deletions \n
-          - ${files.length} files edited \n
+        - Commit message: ${commit_message}\n
+        New commit with id: #${push_id}, it contained:
+          - ${diffData.changes} changes
+          - ${diffData.additions} additions
+          - ${diffData.deletions} deletions
+          - ${files.length} files edited
+        Files modified:
+          ${fileNames.map((file) => `- ${file}`).join('\n')}
       `,
     });
   } catch (error) {
