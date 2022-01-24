@@ -14,20 +14,17 @@ inputs:
   push_id:
     description: "The id of the push"
     required: true
-  commit_number:
-    description: "The number of commits pushed"
-    required: true
   commit_sha:
     description: "The commit sha"
-    required: true
-  token:
-    description: "The token to use to access the GitHub API"
     required: true
   commit_message:
     description: "The commit message"
     required: true
   ref:
     description: "The ref of the push"
+    required: true
+  token:
+    description: "The token to use to access the GitHub API"
     required: true
 runs:
   using: "node16"

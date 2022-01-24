@@ -3,7 +3,6 @@ name: Git commit metadata annotation
 on: push
 
 jobs:
-
   annotate-pr:
     runs-on: ubuntu-latest
     name: Annotates commits with metadata
@@ -18,6 +17,5 @@ jobs:
           commit_sha: ${{ github.event.after }}
           ref: ${{ github.event.ref }}
           commit_message: ${{ github.event.commits[0].message }}
-          commit_number: ${{ github.event.push.commits.length }}
           push_id: ${{ github.event.commits[0].id }}
           token: ${{ secrets.GITHUB_TOKEN }}
