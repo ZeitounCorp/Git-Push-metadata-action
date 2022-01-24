@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Annotates commits with metadata
     steps:
-      - uses: hmarr/debug-action@v2
+      # - uses: hmarr/debug-action@v2 uncomment to debug
       - name: Annotate Commit
         uses: ZeitounCorp/Git-Push-metadata-action@main
         with:

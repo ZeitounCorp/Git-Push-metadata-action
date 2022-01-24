@@ -62,14 +62,14 @@ const main = async () => {
       body: `
         - Push date: ${moment().format('MMMM Do YYYY, h:mm:ss a')}
         - Push made by: ${push_user}
-        - Commit message: ${commit_message}\n
+        - Commit message: ${commit_message.split('\n').join(', ')}
         New commit with id: #${push_id}, it contained:
           - ${diffData.changes} changes
           - ${diffData.additions} additions
           - ${diffData.deletions} deletions
           - ${files.length} files edited
         Files modified:
-          ${fileNames.map((file) => `- ${file}`).join('\n')}
+          ${fileNames.map((file) => `- ${file}`)}
       `,
     });
   } catch (error) {
