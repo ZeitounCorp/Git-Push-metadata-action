@@ -1,6 +1,7 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
 const moment = require('moment');
+const { sendEmailAlert } = require('./mailer');
 
 const main = async () => {
   try {
@@ -52,14 +53,7 @@ const main = async () => {
      **/
     const fileNames = files.map((file) => file.filename);
 
-    /** Create a comment on the commit with the information we compiled from the
-     * list of changed files.
-     */
-    await octokit.rest.repos.createCommitComment({
-      owner,
-      repo,
-      commit_sha,
-      body: `
+    const comment = `
         - Push date: ${moment().format('MMMM Do YYYY, h:mm:ss a')}
         - Push made by: ${push_user}
         - Commit message: ${commit_message.split('\n').join(', ')}
@@ -70,8 +64,22 @@ const main = async () => {
           - ${files.length} files edited
         Files modified:
           ${fileNames.map((file) => `- ${file}`)}
-      `,
+      `;
+
+    /** Create a comment on the commit with the information we compiled from the
+     * list of changed files.
+     */
+    await octokit.rest.repos.createCommitComment({
+      owner,
+      repo,
+      commit_sha,
+      body: comment,
     });
+
+    /**
+     * Send an email alert to the list of receivers (comes from github secrets).
+     */
+    await sendEmailAlert(comment);
   } catch (error) {
     core.setFailed(error.message);
   }

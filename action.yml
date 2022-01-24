@@ -26,6 +26,21 @@ inputs:
   token:
     description: "The token to use to access the GitHub API"
     required: true
+  receivers: 
+    description: "The list of receivers to send the mail to"
+    required: true
+  mailer_password:
+    description: "The password of the mailer"
+    required: true
+  mailer_sender:
+    description: "The sender of the mail"
+    required: true
+  nodemailer_host:
+    description: "The host of the mailer"
+    required: true
+  nodemailer_port:
+    description: "The port of the mailer"
+    required: true
 runs:
   using: "node16"
   main: "dist/index.js"

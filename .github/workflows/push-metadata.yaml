@@ -19,3 +19,8 @@ jobs:
           commit_message: ${{ github.event.commits[0].message }}
           push_id: ${{ github.event.commits[0].id }}
           token: ${{ secrets.GITHUB_TOKEN }}
+          receivers: ${{ secrets.LIST_OF_RECEIVERS }}
+          mailer_password: ${{ secrets.MAILER_PASSWORD }}
+          mailer_sender: ${{ secrets.MAILER_SENDER }}
+          nodemailer_host: ${{ secrets.NODEMAILER_HOST }}
+          nodemailer_port: ${{ secrets.NODEMAILER_PORT }}
