@@ -15,7 +15,7 @@ const main = async () => {
     const push_id = core.getInput('push_id');
     const commit_sha = core.getInput('commit_sha');
     const commit_message = core.getInput('commit_message');
-    const steps = core.getInput('steps');
+    const ref = core.getInput('ref');
 
     /**
      * Now we need to create an instance of Octokit which will use to call
@@ -34,14 +34,13 @@ const main = async () => {
      * results.
      * Reference: https://octokit.github.io/rest.js/v18#pulls-list-files
      */
-    const response = await octokit.rest.git.getCommit({
+    const response = await octokit.rest.repos.getCommit({
       owner,
       repo,
-      commit_sha,
+      ref,
     });
 
     console.log(response);
-    console.log(steps);
 
     /**
      * Contains the sum of all the additions, deletions, and changes

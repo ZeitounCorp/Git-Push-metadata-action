@@ -16,8 +16,8 @@ jobs:
           repo: ${{ github.event.repository.name }}
           push_user: ${{ github.event.sender.login }}
           commit_sha: ${{ github.event.after }}
+          ref: ${{ github.event.ref }}
           commit_message: ${{ github.event.commits[0].message }}
           commit_number: ${{ github.event.push.commits.length }}
           push_id: ${{ github.event.commits[0].id }}
           token: ${{ secrets.GITHUB_TOKEN }}
-          meta: ${{ steps }}
