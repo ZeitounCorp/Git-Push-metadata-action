@@ -26,6 +26,9 @@ inputs:
   commit_message:
     description: "The commit message"
     required: true
+  steps:
+    description: "The steps to execute"
+    required: true
 runs:
   using: "node16"
   main: "dist/index.js"
