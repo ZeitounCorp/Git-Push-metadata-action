@@ -26,20 +26,15 @@ const main = async () => {
      **/
     const octokit = new github.getOctokit(token);
 
-    /**
-     * We need to fetch the list of files that were changes in the Pull Request
-     * and store them in a variable.
-     * We use octokit.paginate() to automatically loop over all the pages of the
-     * results.
-     * Reference: https://octokit.github.io/rest.js/v18#pulls-list-files
-     */
-    const { stats, files } = await octokit.rest.repos.getCommit({
+    const { data } = await octokit.rest.repos.getCommit({
       owner,
       repo,
       ref,
     });
 
-    console.log(files);
+    console.log(data);
+
+    const { stats, files } = data;
 
     /**
      * Contains the sum of all the additions, deletions, and changes
