@@ -44,14 +44,14 @@ jobs:
 
 > **General secrets**
 
-- `GITHUB_TOKEN`: Github Personal access token. you can generate one [here](https://github.com/settings/tokens)
-- `LIST_OF_RECEIVERS`: List of receivers separated by a comma (egc: `test@tester.com,john@seed.com`)
+- `GITHUB_TOKEN`: Github Personal access token. you can generate one [here](https://github.com/settings/tokens) (**required**)
+- `LIST_OF_RECEIVERS`: List of receivers separated by a comma (egc: `test@tester.com,john@seed.com`) (**required**)
 
 > **Mailer secrets** look at the [nodemailer](https://nodemailer.com/about/) documentation for more information
 
-- `MAILER_PASSWORD`: Mailer password, in order to use the mailing functionnality, you need to have a mailer account on your mail provider (gmail, hotmail, personnal mail server, etc...)
-- `MAILER_SENDER`: email address, in order to use the mailing functionnality, you need to have a mailer account on your mail provider (gmail, hotmail, personnal mail server, etc...)
-- `NODEMAILER_HOST`: Mailer host (host from your mail provider, egc: For OVH: ssl0.ovh.net)
-- `NODEMAILER_PORT`: Mailer port (465 for ssl, comes from your mail provider)
+- `MAILER_PASSWORD`: Mailer password, in order to use the mailing functionnality, you need to have a mailer account on your mail provider (gmail, hotmail, personnal mail server, etc...) (**required**)
+- `MAILER_SENDER`: email address, in order to use the mailing functionnality, you need to have a mailer account on your mail provider (gmail, hotmail, personnal mail server, etc...) (**required**)
+- `NODEMAILER_HOST`: Mailer host (host from your mail provider, egc: For OVH: ssl0.ovh.net) (**required**)
+- `NODEMAILER_PORT`: Mailer port (465 for ssl, comes from your mail provider) (**required**)
 
 **Enjoy ! Made with 🖤 by [@ZeitounCorp](https://github.com/ZeitounCorp)**
